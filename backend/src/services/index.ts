@@ -18,6 +18,8 @@ import {
 
 // Export the external fragrance service
 export { ExternalFragranceService, createExternalFragranceService } from './external-fragrance.service';
+export { InventoryService, createInventoryService } from './inventory.service';
+export { SchedulerService, getSchedulerService, createSchedulerService } from './scheduler.service';
 
 export interface FragranceService {
   searchExternal(query: string): Promise<ExternalFragrance[]>;
@@ -27,7 +29,7 @@ export interface FragranceService {
   deleteFragrance(id: string): Promise<void>;
 }
 
-export interface InventoryService {
+export interface IInventoryService {
   updateInventory(fragranceId: string, usage: UsageEntry): Promise<Inventory>;
   getInventoryStatus(fragranceId: string): Promise<InventoryStatus>;
   getLowInventoryAlerts(userId: string): Promise<LowInventoryAlert[]>;

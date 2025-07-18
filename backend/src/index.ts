@@ -8,7 +8,9 @@ import { initializeDatabase } from './database/connection';
 import { runMigrations } from './database/migrations';
 import { seedTestData } from './database/seed';
 import { RepositoryFactory } from './models';
+import { getSchedulerService } from './services';
 import fragranceRoutes from './routes/fragrance.routes';
+import inventoryRoutes from './routes/inventory.routes';
 
 // Load environment variables
 dotenv.config();
@@ -33,6 +35,7 @@ app.get('/api', (_req, res) => {
 });
 
 app.use('/api/fragrances', fragranceRoutes);
+app.use('/api/inventory', inventoryRoutes);
 
 // Error handling middleware
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
@@ -75,6 +78,11 @@ async function startServer() {
     // Initialize repository factory
     await RepositoryFactory.initialize();
     console.log('📦 Repository factory initialized');
+
+    // Start background jobs
+    const scheduler = getSchedulerService();
+    scheduler.startInventoryRecalculationJob();
+    console.log('📅 Background jobs started');
 
     // Start server
     app.listen(PORT, () => {

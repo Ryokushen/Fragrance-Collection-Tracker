@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 
 // Export the actual controller implementation
 export { FragranceController as FragranceControllerImpl, createFragranceController } from './fragrance.controller';
+export { InventoryController as InventoryControllerImpl, createInventoryController } from './inventory.controller';
 
 export interface FragranceController {
   searchExternal(req: Request, res: Response): Promise<void>;
