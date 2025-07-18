@@ -1,0 +1,31 @@
+// Controller interfaces - to be implemented in later tasks
+
+import { Request, Response } from 'express';
+
+export interface FragranceController {
+  searchExternal(req: Request, res: Response): Promise<void>;
+  createFragrance(req: Request, res: Response): Promise<void>;
+  getUserFragrances(req: Request, res: Response): Promise<void>;
+  getFragranceById(req: Request, res: Response): Promise<void>;
+  updateFragrance(req: Request, res: Response): Promise<void>;
+  deleteFragrance(req: Request, res: Response): Promise<void>;
+}
+
+export interface InventoryController {
+  updateInventory(req: Request, res: Response): Promise<void>;
+  getInventoryStatus(req: Request, res: Response): Promise<void>;
+  getLowInventoryAlerts(req: Request, res: Response): Promise<void>;
+}
+
+export interface CalendarController {
+  recordDailyWear(req: Request, res: Response): Promise<void>;
+  getDailyWear(req: Request, res: Response): Promise<void>;
+  getWearHistory(req: Request, res: Response): Promise<void>;
+  getUsageStatistics(req: Request, res: Response): Promise<void>;
+}
+
+export interface AuthController {
+  register(req: Request, res: Response): Promise<void>;
+  login(req: Request, res: Response): Promise<void>;
+  getProfile(req: Request, res: Response): Promise<void>;
+}
