@@ -135,6 +135,11 @@ export function validateParams(schema: z.ZodSchema<any>) {
   };
 }
 
+// Rating update schema
+export const updateRatingSchema = z.object({
+  rating: z.number().int().min(1).max(10),
+});
+
 // Common parameter schemas
 export const uuidParamSchema = z.object({
   id: z.string().uuid('Invalid fragrance ID format'),

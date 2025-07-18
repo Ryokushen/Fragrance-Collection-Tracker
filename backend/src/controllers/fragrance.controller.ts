@@ -197,6 +197,48 @@ export class FragranceController {
   }
 
   /**
+   * Update fragrance rating
+   * PUT /api/fragrances/:id/rating
+   */
+  async updateFragranceRating(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const { rating } = req.body;
+
+      const fragranceRepo = RepositoryFactory.getFragranceRepository();
+      
+      // Check if fragrance exists first
+      const existingFragrance = await fragranceRepo.findById(id);
+      if (!existingFragrance) {
+        res.status(404).json({
+          success: false,
+          error: {
+            code: 'NOT_FOUND',
+            message: 'Fragrance not found',
+          },
+        });
+        return;
+      }
+
+      const updatedFragrance = await fragranceRepo.update(id, { personalRating: rating });
+
+      res.json({
+        success: true,
+        data: updatedFragrance,
+      });
+    } catch (error) {
+      console.error('Error updating fragrance rating:', error);
+      res.status(500).json({
+        success: false,
+        error: {
+          code: 'INTERNAL_ERROR',
+          message: 'Failed to update fragrance rating',
+        },
+      });
+    }
+  }
+
+  /**
    * Delete a fragrance
    * DELETE /api/fragrances/:id
    */

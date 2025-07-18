@@ -49,7 +49,7 @@
   - Write unit tests for calendar service and wear tracking
   - _Requirements: 3.1, 3.2, 3.3, 3.4_
 
-- [ ] 7. Create rating and personal notes system
+- [x] 7. Create rating and personal notes system
   - Add rating fields to fragrance model and database schema
   - Implement PUT /api/fragrances/:id/rating endpoint for updating ratings
   - Add personal notes functionality to fragrance update endpoints
