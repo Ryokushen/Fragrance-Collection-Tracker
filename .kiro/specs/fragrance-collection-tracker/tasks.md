@@ -7,7 +7,7 @@
   - Create core interface definitions for Fragrance, Inventory, DailyWear, and UsageEntry models
   - _Requirements: All requirements depend on proper project structure_
 
-- [ ] 2. Implement database schema and models
+- [x] 2. Implement database schema and models
   - Create SQLite database schema with tables for fragrances, inventory, daily_wear, and usage_entries
   - Write database migration scripts for schema creation
   - Implement data access layer with proper TypeScript interfaces
