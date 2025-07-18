@@ -22,7 +22,7 @@
   - Write unit tests for API integration service
   - _Requirements: 1.1, 1.2, 1.4_
 
-- [ ] 4. Create core fragrance management backend endpoints
+- [x] 4. Create core fragrance management backend endpoints
   - Implement POST /api/fragrances endpoint for adding fragrances to collection
   - Implement GET /api/fragrances endpoint with filtering and sorting capabilities
   - Implement PUT /api/fragrances/:id endpoint for updating fragrance details

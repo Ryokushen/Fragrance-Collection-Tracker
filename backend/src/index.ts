@@ -6,7 +6,9 @@ import helmet from 'helmet';
 import dotenv from 'dotenv';
 import { initializeDatabase } from './database/connection';
 import { runMigrations } from './database/migrations';
+import { seedTestData } from './database/seed';
 import { RepositoryFactory } from './models';
+import fragranceRoutes from './routes/fragrance.routes';
 
 // Load environment variables
 dotenv.config();
@@ -25,10 +27,12 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// API routes placeholder
+// API routes
 app.get('/api', (_req, res) => {
   res.json({ message: 'Fragrance Collection Tracker API' });
 });
+
+app.use('/api/fragrances', fragranceRoutes);
 
 // Error handling middleware
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
@@ -63,6 +67,10 @@ async function startServer() {
     // Run migrations
     await runMigrations();
     console.log('📦 Database migrations completed');
+
+    // Seed test data
+    await seedTestData();
+    console.log('📦 Test data seeded');
 
     // Initialize repository factory
     await RepositoryFactory.initialize();

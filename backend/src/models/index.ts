@@ -168,7 +168,20 @@ export class FragranceRepository extends BaseRepository {
       // Apply sorting
       let orderClause = 'ORDER BY created_at DESC';
       if (sort) {
-        const field = sort.field === 'lastWorn' ? 'updated_at' : sort.field;
+        let field: string = sort.field;
+        // Map camelCase to snake_case for database columns
+        switch (sort.field) {
+          case 'createdAt':
+            field = 'created_at';
+            break;
+          case 'lastWorn':
+            field = 'updated_at';
+            break;
+          case 'rating':
+            field = 'personal_rating';
+            break;
+          // name and brand are already correct
+        }
         orderClause = `ORDER BY ${field} ${sort.direction.toUpperCase()}`;
       }
 
