@@ -40,7 +40,7 @@
   - Write unit tests for inventory calculations and alerts
   - _Requirements: 2.1, 2.2, 2.3, 2.4_
 
-- [ ] 6. Build calendar and daily wear tracking system
+- [x] 6. Build calendar and daily wear tracking system
   - Implement CalendarService for recording and retrieving daily wear data
   - Create POST /api/daily-wear endpoint for recording fragrance usage
   - Create GET /api/daily-wear endpoint for retrieving wear history by date range

@@ -5,6 +5,7 @@ import { Request, Response } from 'express';
 // Export the actual controller implementation
 export { FragranceController as FragranceControllerImpl, createFragranceController } from './fragrance.controller';
 export { InventoryController as InventoryControllerImpl, createInventoryController } from './inventory.controller';
+export { CalendarController } from './calendar.controller';
 
 export interface FragranceController {
   searchExternal(req: Request, res: Response): Promise<void>;
@@ -21,7 +22,7 @@ export interface InventoryController {
   getLowInventoryAlerts(req: Request, res: Response): Promise<void>;
 }
 
-export interface CalendarController {
+export interface ICalendarController {
   recordDailyWear(req: Request, res: Response): Promise<void>;
   getDailyWear(req: Request, res: Response): Promise<void>;
   getWearHistory(req: Request, res: Response): Promise<void>;

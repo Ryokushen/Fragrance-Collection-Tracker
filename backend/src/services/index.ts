@@ -20,6 +20,7 @@ import {
 export { ExternalFragranceService, createExternalFragranceService } from './external-fragrance.service';
 export { InventoryService, createInventoryService } from './inventory.service';
 export { SchedulerService, getSchedulerService, createSchedulerService } from './scheduler.service';
+export { CalendarService, createCalendarService } from './calendar.service';
 
 export interface FragranceService {
   searchExternal(query: string): Promise<ExternalFragrance[]>;
@@ -36,7 +37,7 @@ export interface IInventoryService {
   calculateRemainingDays(fragranceId: string): Promise<number>;
 }
 
-export interface CalendarService {
+export interface ICalendarService {
   recordDailyWear(userId: string, date: Date, fragrances: DailyWearEntry[]): Promise<void>;
   getDailyWear(userId: string, date: Date): Promise<DailyWearEntry[]>;
   getWearHistory(userId: string, dateRange: DateRange): Promise<WearHistory[]>;

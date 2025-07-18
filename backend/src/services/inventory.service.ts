@@ -13,6 +13,41 @@ export class InventoryService {
   private static readonly DEFAULT_LOW_THRESHOLD = 20; // 20% remaining
 
   /**
+   * Update inventory from usage (used by calendar service)
+   */
+  async updateInventoryFromUsage(fragranceId: string, usage: UsageEntry): Promise<Inventory> {
+    const inventoryRepo = RepositoryFactory.getInventoryRepository();
+
+    // Get current inventory
+    let inventory = await inventoryRepo.findByFragranceId(fragranceId);
+    
+    if (!inventory) {
+      throw new Error(`No inventory found for fragrance ${fragranceId}`);
+    }
+
+    // Calculate new inventory level if usage tracking is enabled
+    if (inventory.usageTracking) {
+      const usageAmount = usage.estimatedUsage || usage.sprayCount * InventoryService.SPRAY_TO_ML_RATIO;
+      const usagePercentage = (usageAmount / inventory.bottleSize) * 100;
+      const newLevel = Math.max(0, inventory.currentLevel - usagePercentage);
+
+      // Update inventory with new level and recalculate estimated days remaining
+      const updatedInventory = await inventoryRepo.update(inventory.id, {
+        currentLevel: newLevel,
+        estimatedDaysRemaining: await this.calculateRemainingDays(fragranceId)
+      });
+
+      if (!updatedInventory) {
+        throw new Error('Failed to update inventory');
+      }
+
+      return updatedInventory;
+    }
+
+    return inventory;
+  }
+
+  /**
    * Update inventory based on usage entry
    */
   async updateInventory(fragranceId: string, usage: UsageEntry): Promise<Inventory> {

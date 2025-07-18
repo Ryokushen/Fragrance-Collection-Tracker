@@ -11,6 +11,7 @@ import { RepositoryFactory } from './models';
 import { getSchedulerService } from './services';
 import fragranceRoutes from './routes/fragrance.routes';
 import inventoryRoutes from './routes/inventory.routes';
+import calendarRoutes from './routes/calendar.routes';
 
 // Load environment variables
 dotenv.config();
@@ -36,6 +37,7 @@ app.get('/api', (_req, res) => {
 
 app.use('/api/fragrances', fragranceRoutes);
 app.use('/api/inventory', inventoryRoutes);
+app.use('/api/daily-wear', calendarRoutes);
 
 // Error handling middleware
 app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
