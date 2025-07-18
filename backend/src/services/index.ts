@@ -1,4 +1,4 @@
-// Service layer interfaces - to be implemented in later tasks
+// Service layer interfaces and implementations
 
 import { 
   Fragrance, 
@@ -15,6 +15,9 @@ import {
   WearHistory,
   UsageStats
 } from '../types';
+
+// Export the external fragrance service
+export { ExternalFragranceService, createExternalFragranceService } from './external-fragrance.service';
 
 export interface FragranceService {
   searchExternal(query: string): Promise<ExternalFragrance[]>;

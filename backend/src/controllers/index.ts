@@ -1,6 +1,9 @@
-// Controller interfaces - to be implemented in later tasks
+// Controller interfaces and implementations
 
 import { Request, Response } from 'express';
+
+// Export the actual controller implementation
+export { FragranceController as FragranceControllerImpl, createFragranceController } from './fragrance.controller';
 
 export interface FragranceController {
   searchExternal(req: Request, res: Response): Promise<void>;
