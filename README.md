@@ -5,10 +5,11 @@ A personal application for fragrance enthusiasts to manage their collection, tra
 ## Features
 
 - **Collection Management**: Add fragrances from online databases or manually
+- **Rating & Notes System**: Rate fragrances (1-10 scale) and add personal notes
 - **Inventory Tracking**: Monitor bottle levels and usage patterns
 - **Daily Wear Calendar**: Record which fragrances you wore each day
-- **Rating System**: Rate and organize your fragrances
 - **List Organization**: Categorize fragrances as owned, tried, or wishlist items
+- **Advanced Filtering**: Filter and sort by ratings, brands, and collection status
 
 ## Project Structure
 
@@ -102,9 +103,10 @@ This project is actively under development with significant backend functionalit
 4. **Fragrance Management** - Complete CRUD operations for fragrance collection
 5. **Inventory Tracking** - Bottle level monitoring with usage calculations
 6. **Calendar & Daily Wear** - Daily fragrance usage tracking with statistics
-7. **External API Integration** - Fragrance database search capabilities
-8. **Background Jobs** - Automated inventory recalculation scheduling
-9. **Comprehensive Testing** - Unit tests for all services and controllers
+7. **Rating & Personal Notes System** - 1-10 rating scale with personal notes (2000 char limit)
+8. **External API Integration** - Fragrance database search capabilities
+9. **Background Jobs** - Automated inventory recalculation scheduling
+10. **Comprehensive Testing** - Unit tests for all services and controllers (59 passing tests)
 
 ### 🔄 **In Progress**
 - **API Documentation** - OpenAPI/Swagger documentation

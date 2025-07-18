@@ -13,7 +13,11 @@
     "test": "npm run test:backend && npm run test:frontend",
     "test:backend": "cd backend && npm test",
     "test:frontend": "cd frontend && npm test",
-    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "update-readme": "node scripts/update-readme.js",
+    "setup": "npm install && npm run install:all && cp backend/.env.example backend/.env",
+    "db:reset": "cd backend && rm -f data/fragrance_tracker.db && npm run migrate && npm run seed",
+    "lint:all": "cd backend && npm run lint && cd ../frontend && npm run lint"
   },
   "keywords": ["fragrance", "collection", "tracker", "inventory", "calendar"],
   "author": "",
