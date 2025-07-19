@@ -7,6 +7,7 @@ import {
   createFragranceSchema,
   updateFragranceSchema,
   updateRatingSchema,
+  updateListTypeSchema,
   fragranceFiltersSchema,
   uuidParamSchema
 } from '../middleware/validation';
@@ -45,6 +46,12 @@ router.put('/:id/rating',
   validateParams(uuidParamSchema),
   validateBody(updateRatingSchema),
   fragranceController.updateFragranceRating.bind(fragranceController)
+);
+
+router.put('/:id/list-type', 
+  validateParams(uuidParamSchema),
+  validateBody(updateListTypeSchema),
+  fragranceController.updateFragranceListType.bind(fragranceController)
 );
 
 router.delete('/:id', 

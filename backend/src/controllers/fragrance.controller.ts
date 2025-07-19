@@ -239,6 +239,68 @@ export class FragranceController {
   }
 
   /**
+   * Update fragrance list type (owned/tried/wishlist)
+   * PUT /api/fragrances/:id/list-type
+   */
+  async updateFragranceListType(req: Request, res: Response): Promise<void> {
+    try {
+      const { id } = req.params;
+      const { listType } = req.body;
+
+      // Validate listType
+      if (!listType || !['owned', 'tried', 'wishlist'].includes(listType)) {
+        res.status(400).json({
+          success: false,
+          error: {
+            code: 'INVALID_LIST_TYPE',
+            message: 'List type must be one of: owned, tried, wishlist',
+          },
+        });
+        return;
+      }
+
+      const fragranceRepo = RepositoryFactory.getFragranceRepository();
+      
+      // Check if fragrance exists first
+      const existingFragrance = await fragranceRepo.findById(id);
+      if (!existingFragrance) {
+        res.status(404).json({
+          success: false,
+          error: {
+            code: 'NOT_FOUND',
+            message: 'Fragrance not found',
+          },
+        });
+        return;
+      }
+
+      // Handle transition logic
+      const updateData: UpdateFragranceDto = { listType };
+      
+      // When moving from wishlist/tried to owned, inventory management
+      // will be handled separately by the frontend/inventory service
+      // This endpoint focuses solely on list type updates
+
+      const updatedFragrance = await fragranceRepo.update(id, updateData);
+
+      res.json({
+        success: true,
+        data: updatedFragrance,
+        message: `Fragrance moved to ${listType} list successfully`,
+      });
+    } catch (error) {
+      console.error('Error updating fragrance list type:', error);
+      res.status(500).json({
+        success: false,
+        error: {
+          code: 'INTERNAL_ERROR',
+          message: 'Failed to update fragrance list type',
+        },
+      });
+    }
+  }
+
+  /**
    * Delete a fragrance
    * DELETE /api/fragrances/:id
    */

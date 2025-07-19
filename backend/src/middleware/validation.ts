@@ -140,6 +140,11 @@ export const updateRatingSchema = z.object({
   rating: z.number().int().min(1).max(10),
 });
 
+// List type update schema
+export const updateListTypeSchema = z.object({
+  listType: z.enum(['owned', 'tried', 'wishlist']),
+});
+
 // Common parameter schemas
 export const uuidParamSchema = z.object({
   id: z.string().uuid('Invalid fragrance ID format'),

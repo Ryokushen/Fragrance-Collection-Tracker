@@ -57,7 +57,7 @@
   - Write tests for rating and notes functionality
   - _Requirements: 6.1, 6.2, 6.3, 6.4_
 
-- [ ] 8. Implement fragrance list categorization system
+- [x] 8. Implement fragrance list categorization system
   - Add listType field to fragrance model (owned/tried/wishlist)
   - Implement PUT /api/fragrances/:id/list-type endpoint for moving between lists
   - Add filtering by list type to GET /api/fragrances endpoint
